@@ -40,7 +40,7 @@ config.window_decorations = "RESIZE"
 config.background = {
   {
       source = {
-          File = wezterm.config_dir .. "/purple.png"
+          File = wezterm.config_dir .. "/bgblurred.png"
       },
       opacity = 1
   }
@@ -90,7 +90,7 @@ config.window_decorations = "RESIZE"
 config.background = {
   {
       source = {
-          File = wezterm.config_dir .. "/purple.png"
+          File = wezterm.config_dir .. "/bgblurred.png"
       },
       opacity = 1
   }
@@ -110,14 +110,14 @@ config.keys = {
 
   -- Scroll by page
   { key = 'PageUp', action = wezterm.action.ScrollByPage(-1) },
-	{ key = 'PageDown', action = wezterm.action.ScrollByPage(1) },
+  { key = 'PageDown', action = wezterm.action.ScrollByPage(1) },
 
   -- Delete line to the left
   {
-		key = 'Backspace',
-		mods = 'LEADER',
-		action = wezterm.action.SendKey({ key = 'u', mods = 'CTRL' }),
-	},
+    key = 'Backspace',
+    mods = 'LEADER',
+    action = wezterm.action.SendKey({ key = 'u', mods = 'CTRL' }),
+  },
 
   -- Open WezTerm config file quickly
   {
@@ -151,6 +151,13 @@ config.keys = {
       end),
     },
   },
+
+  -- Find files by fzf
+  {
+    key = 'f', 
+    mods = 'CTRL',
+    action = wezterm.action.SendString('fzf\n'),
+  },
 }
 
 -- Tab Bar Configuration
@@ -164,7 +171,6 @@ config.colors.tab_bar = {
     new_tab_hover = { fg_color = "rgba(0, 0, 0, 0)", bg_color = "rgba(0, 0, 0, 0)" },
 }
 
-  wezterm.log_info(tab)
 wezterm.on("format-tab-title", function(tab, _, _, _, hover)
   local background = transparent_bg
   local foreground = transparent_bg
