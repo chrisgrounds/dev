@@ -42,18 +42,15 @@ return {
           return require("codecompanion.adapters").extend("openai", {
             schema = {
               model = {
-                default = "deepseek-coder-v2",
+                default = "gpt-4.1-mini",
               },
             },
             env = {
-              api_key = "cmd: cat ~/.config/openai/key",
+              api_key = "OAI_API_KEY",
             },
           })
         end,
       },
     })
-    vim.api.nvim_set_keymap("n", "<c-l>", "<cmd>CodeCompanionToggle<cr>", { noremap = true, silent = true })
-    vim.api.nvim_set_keymap("v", "<c-l>", "<cmd>CodeCompanionToggle<cr>", { noremap = true, silent = true })
-    vim.api.nvim_set_keymap("v", "ga", "<cmd>CodeCompanionAdd<cr>", { noremap = true, silent = true })
   end,
 }
