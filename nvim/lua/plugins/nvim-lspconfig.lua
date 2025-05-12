@@ -17,6 +17,7 @@ return {
             show_parameter_hints = true,
           },
         },
+        autoformat = true,
         servers = {
           ["rust_analyzer"] = {
             settings = {

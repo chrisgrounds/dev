@@ -10,3 +10,5 @@ end, { desc = "Code action" })
 
 map("n", "<leader>ak", "<cmd>CodeCompanion<cr>", { desc = "Edit" })
 map("n", "<leader>ac", "<cmd>CodeCompanionChat<cr>", { desc = "Chat" })
+map("v", "<leader>ak", "<cmd>'<,'>CodeCompanion<cr>", { desc = "Edit" })
+map("v", "<leader>ac", "<cmd>'<,'>CodeCompanionChat<cr>", { desc = "Chat" })
