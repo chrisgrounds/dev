@@ -17,12 +17,12 @@ return {
     end)
 
     local highlight = {
-      "RainbowRed",
-      "RainbowYellow",
-      "RainbowBlue",
-      "RainbowOrange",
-      "RainbowGreen",
-      "RainbowViolet",
+      -- "RainbowRed",
+      -- "RainbowYellow",
+      -- "RainbowBlue",
+      -- "RainbowOrange",
+      -- "RainbowGreen",
+      -- "RainbowViolet",
       "RainbowCyan",
     }
     require("ibl").setup({
