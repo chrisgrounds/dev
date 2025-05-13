@@ -1,18 +1,21 @@
+local highlight = {
+  "RainbowRed",
+  "RainbowYellow",
+  "RainbowBlue",
+  "RainbowOrange",
+  "RainbowGreen",
+  "RainbowViolet",
+  "RainbowCyan",
+}
+
 return {
   {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
     opts = {
-      indent = {
-        highlight = {
-          "RainbowRed",
-          "RainbowYellow",
-          "RainbowBlue",
-          "RainbowOrange",
-          "RainbowGreen",
-          "RainbowViolet",
-          "RainbowCyan",
-        },
+      scope = {
+        enabled = true,
+        highlight = highlight,
       },
       -- add more ibl options here if needed
     },
@@ -27,7 +30,11 @@ return {
         vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
         vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
       end)
+
+      -- vim.g.rainbow_delimiters = { highlight = highlight }
       require("ibl").setup(opts)
+
+      hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
     end,
   },
 }
