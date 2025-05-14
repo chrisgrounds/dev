@@ -184,8 +184,8 @@ config.colors.tab_bar = {
 }
 
 wezterm.on("format-tab-title", function(tab, _, _, _, hover)
-	local background = transparent_bg
-	local foreground = transparent_bg
+	local background = "rgba(94, 241, 255, 0.1)"
+	local foreground = "rgba(94, 241, 255, 0.1)"
 
 	if tab.is_active then
 		background = "rgba(94, 241, 255, 0.3)"
