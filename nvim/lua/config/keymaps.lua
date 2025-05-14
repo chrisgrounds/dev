@@ -16,3 +16,5 @@ map("v", "<leader>ac", "<cmd>'<,'>CodeCompanionChat<cr>", { desc = "Chat" })
 map("n", "<leader>ca", function()
   vim.lsp.buf.code_action({ apply = true })
 end, { desc = "Code action" })
+
+map("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename" })
