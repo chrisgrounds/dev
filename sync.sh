@@ -41,7 +41,7 @@ sed -i -e "s/OAI_API_KEY/$oai_api_key/g" "$nvim_path/lua/plugins/codecompanion.l
 ### wezterm ###
 w11_wezterm_path="$windows_home/.wezterm.lua"
 remove_file "$w11_wezterm_path"
-copy wezterm/.wezterm.lua "$w11_wezterm_path"
+copy wezterm/wezterm.lua "$w11_wezterm_path"
 
 echo_hello_world() {
   echo "hello world"
