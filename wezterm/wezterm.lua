@@ -4,6 +4,21 @@ local wezterm = require("wezterm")
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 
+config.font = wezterm.font("CaskaydiaCove Nerd Font Mono", { weight = "DemiBold", italic = true })
+
+config.wsl_domains = {
+	{
+		-- The name of this specific domain.  Must be unique amonst all types
+		-- of domain in the configuration file.
+		name = "WSL:Ubuntu",
+
+		-- The name of the distribution.  This identifies the WSL distribution.
+		-- It must match a valid distribution from your `wsl -l -v` output in
+		-- order for the domain to be useful.
+		distribution = "Ubuntu",
+	},
+}
+
 local transparent_bg = "rgba(0, 0, 0, 0)"
 local c8 = "#5ef1ff"
 local c7 = "#5ea1ff"
