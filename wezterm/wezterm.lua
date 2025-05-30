@@ -63,56 +63,6 @@ config.background = {
 config.window_close_confirmation = "NeverPrompt"
 config.win32_system_backdrop = "Acrylic"
 
--- Pull in the wezterm API
-local wezterm = require("wezterm")
-
--- This will hold the configuration.
-local config = wezterm.config_builder()
-
-local transparent_bg = "rgba(0, 0, 0, 0)"
-local c8 = "#5ef1ff"
-local c7 = "#5ea1ff"
-
-local cyberdream = {
-	foreground = "#ffffff",
-	background = "#16181a",
-
-	cursor_bg = "#ffffff",
-	cursor_fg = "#16181a",
-	cursor_border = "#ffffff",
-
-	selection_fg = "#ffffff",
-	selection_bg = "#3c4048",
-
-	scrollbar_thumb = "#16181a",
-	split = "#16181a",
-
-	ansi = { "#16181a", "#ff6e5e", "#5eff6c", "#f1ff5e", c7, c7, c8, "#ffffff" },
-	brights = { "#3c4048", "#ff6e5e", "#5eff6c", "#f1ff5e", c7, c7, c8, "#ffffff" },
-	indexed = { [16] = "#ffbd5e", [17] = "#ff6e5e" },
-}
-config.colors = cyberdream
-
--- For example, changing the color scheme:
-config.color_scheme = "Bamboo"
-
-config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1500 }
-
--- Window Configuration
-config.initial_rows = 45
-config.initial_cols = 180
-config.window_decorations = "RESIZE"
-config.background = {
-	{
-		source = {
-			File = wezterm.config_dir .. "/bgblurred.png",
-		},
-		opacity = 1,
-	},
-}
-config.window_close_confirmation = "NeverPrompt"
-config.win32_system_backdrop = "Acrylic"
-
 -- Performance Settings
 config.max_fps = 144
 config.animation_fps = 144
