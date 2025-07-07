@@ -10,11 +10,11 @@ config.wsl_domains = {
 	{
 		name = "WSL:Ubuntu",
 		distribution = "Ubuntu",
+		default_cwd = "~",
 	},
 }
 
 config.default_domain = "WSL:Ubuntu"
-config.default_cwd = wezterm.home_dir
 
 local transparent_bg = "rgba(0, 0, 0, 0)"
 local c8 = "#5ef1ff"
@@ -119,6 +119,23 @@ config.keys = {
 		key = "f",
 		mods = "CTRL",
 		action = wezterm.action.SendString("fzf\n"),
+	},
+
+	-- Split panes (tmux-style)
+	{
+		key = "/",
+		mods = "LEADER",
+		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+	},
+	{
+		key = ".",
+		mods = "LEADER",
+		action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
+	},
+	{
+		key = "x",
+		mods = "LEADER",
+		action = wezterm.action.CloseCurrentPane({ confirm = true }),
 	},
 
 	-- Change panes
