@@ -43,6 +43,5 @@ w11_wezterm_path="$windows_home/.wezterm.lua"
 remove_file "$w11_wezterm_path"
 copy wezterm/wezterm.lua "$w11_wezterm_path"
 
-echo_hello_world() {
-  echo "hello world"
-}
+### claude ###
+copy ai/claude/CLAUDE.md "$linux_home/.claude/CLAUDE.md"

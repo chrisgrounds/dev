@@ -1,4 +1,3 @@
-
 ## Type-Driven Development
 
 You are to practice Type-Driven Development as much as possible. 

@@ -14,6 +14,7 @@ config.wsl_domains = {
 }
 
 config.default_domain = "WSL:Ubuntu"
+config.default_cwd = wezterm.home_dir
 
 local transparent_bg = "rgba(0, 0, 0, 0)"
 local c8 = "#5ef1ff"
