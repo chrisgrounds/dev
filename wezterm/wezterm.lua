@@ -135,7 +135,7 @@ config.keys = {
 	{
 		key = "x",
 		mods = "LEADER",
-		action = wezterm.action.CloseCurrentPane({ confirm = true }),
+		action = wezterm.action.CloseCurrentPane({ confirm = false }),
 	},
 
 	-- Change panes
