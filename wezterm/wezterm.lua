@@ -149,6 +149,16 @@ config.keys = {
 		mods = "LEADER",
 		action = wezterm.action({ ActivatePaneDirection = "Left" }),
 	},
+	{
+		key = "UpArrow",
+		mods = "LEADER",
+		action = wezterm.action({ ActivatePaneDirection = "Up" }),
+	},
+	{
+		key = "DownArrow",
+		mods = "LEADER",
+		action = wezterm.action({ ActivatePaneDirection = "Down" }),
+	},
 }
 
 -- Tab Bar Configuration
