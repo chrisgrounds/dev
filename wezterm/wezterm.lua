@@ -1,23 +1,19 @@
--- Pull in the wezterm API
 local wezterm = require("wezterm")
 
--- This will hold the configuration.
 local config = wezterm.config_builder()
 
-config.font = wezterm.font("CaskaydiaCove Nerd Font Mono", { weight = "DemiBold", italic = true })
+config.font = wezterm.font("Cascadia Code", { weight = "Bold", stretch = "Normal", italic = false })
+
+config.adjust_window_size_when_changing_font_size = false
 
 config.wsl_domains = {
 	{
-		-- The name of this specific domain.  Must be unique amonst all types
-		-- of domain in the configuration file.
 		name = "WSL:Ubuntu",
-
-		-- The name of the distribution.  This identifies the WSL distribution.
-		-- It must match a valid distribution from your `wsl -l -v` output in
-		-- order for the domain to be useful.
 		distribution = "Ubuntu",
 	},
 }
+
+config.default_domain = "WSL:Ubuntu"
 
 local transparent_bg = "rgba(0, 0, 0, 0)"
 local c8 = "#5ef1ff"
@@ -170,5 +166,4 @@ wezterm.on("format-tab-title", function(tab, _, _, _, hover)
 	}
 end)
 
--- and finally, return the configuration to wezterm
 return config
