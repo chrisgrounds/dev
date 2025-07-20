@@ -3,6 +3,7 @@
 dependencies=(
   "ripgrep"
   "fzf"
+  "bat"
 )
 
 update_apt() {

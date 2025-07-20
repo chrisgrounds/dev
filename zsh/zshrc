@@ -14,7 +14,8 @@ export PATH="$HOME/.ghcup/bin:$PATH"
 export PATH="$HOME/.cabal/bin:$PATH"
 
 alias explorer="explorer.exe ."
-alias n = "nvim"
+alias n="nvim"
+alias bat="batcat"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
