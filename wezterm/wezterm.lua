@@ -161,6 +161,26 @@ config.keys = {
 		mods = "LEADER",
 		action = wezterm.action({ ActivatePaneDirection = "Down" }),
 	},
+	{
+		key = "l",
+		mods = "LEADER",
+		action = wezterm.action({ ActivatePaneDirection = "Right" }),
+	},
+	{
+		key = "h",
+		mods = "LEADER",
+		action = wezterm.action({ ActivatePaneDirection = "Left" }),
+	},
+	{
+		key = "k",
+		mods = "LEADER",
+		action = wezterm.action({ ActivatePaneDirection = "Up" }),
+	},
+	{
+		key = "j",
+		mods = "LEADER",
+		action = wezterm.action({ ActivatePaneDirection = "Down" }),
+	},
 }
 
 -- Tab Bar Configuration
