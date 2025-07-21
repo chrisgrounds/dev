@@ -2,22 +2,50 @@ export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="robbyrussell"
 
-plugins=(git)
+plugins=(git aws zsh-interactive-cd themes)
 
 source $ZSH/oh-my-zsh.sh
 
 export EDITOR='nvim'
+export COLORTERM=truecolor
+export NVM_DIR="$HOME/.nvm"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+export PATH=":$PATH"
 export PATH="$HOME/zig-linux-x86_64-0.13.0:$PATH"
 export PATH="$HOME/.idris2/bin:$PATH"
 export PATH="$HOME/.ghcup/bin:$PATH"
 export PATH="$HOME/.cabal/bin:$PATH"
+export PATH="/home/chrisgrounds/.config:$PATH"
+export PATH="/home/chrisgrounds/.config/helix:$PATH"
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+export PATH="$FLYCTL_INSTALL/bin:$PATH"
+export PATH="/snap/:$PATH"
+export PATH="~/.cabal:$PATH"
+export PATH="~/.ghcup:$PATH"
+export PATH="/home/chrisgrounds/liquid-fixpoint/dist-newstyle/build/x86_64-linux/ghc-9.10.1/liquid-fixpoint-0.9.6.3.3/x/fixpoint/build/fixpoint/fixpoint:$PATH"
 
 alias explorer="explorer.exe ."
 alias n="nvim"
 alias bat="batcat"
+alias zshconfig="nvim ~/.zshrc"
+alias switch2="/home/chrisgrounds/src/cli/target/debug/switch2"
+alias n="nvim"
+alias nf='nvim "$(fzf)"'
+alias cdf='cd ~/src/ && cd "$(fzf)"'
+alias gs="git status"
+export FLYCTL_INSTALL="/home/chrisgrounds/.fly"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+sloc() {
+  git ls-files | xargs -n100 wc -l | awk -F ' +|\\.' \
+    '/\./ { sumlines[$NF] += $2 }
+     END { for (ext in sumlines) print sumlines[ext], ext }' | sort -nr
+}
 
+. "$HOME/.local/bin/env"
+
+[ -f "/home/chrisgrounds/.ghcup/env" ] && . "/home/chrisgrounds/.ghcup/env" # ghcup-env
