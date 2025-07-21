@@ -48,4 +48,3 @@ copy ai/claude/CLAUDE.md "$linux_home/.claude/CLAUDE.md"
 
 ### zsh ###
 copy zsh/zshrc "$linux_home/.zshrc"
-source ~/.zshrc
