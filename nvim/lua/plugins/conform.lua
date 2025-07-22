@@ -6,6 +6,7 @@ return {
         lua = { "stylua" },
         rust = { "rustfmt" },
         typescript = { "prettier" },
+        javasript = { "prettier" },
       },
     },
   },
