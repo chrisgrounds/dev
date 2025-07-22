@@ -51,6 +51,7 @@ return {
         "stylua",
         "shfmt",
         "haskell-language-server",
+        "prettier",
       },
     },
     ---@param opts MasonSettings | {ensure_installed: string[]}
