@@ -29,6 +29,8 @@ export PATH="~/.cabal:$PATH"
 export PATH="~/.ghcup:$PATH"
 export PATH="/home/chrisgrounds/liquid-fixpoint/dist-newstyle/build/x86_64-linux/ghc-9.10.1/liquid-fixpoint-0.9.6.3.3/x/fixpoint/build/fixpoint/fixpoint:$PATH"
 
+export FLYCTL_INSTALL="/home/chrisgrounds/.fly"
+
 alias explorer="explorer.exe ."
 alias n="nvim"
 alias bat="batcat"
@@ -38,7 +40,7 @@ alias n="nvim"
 alias nf='nvim "$(fzf)"'
 alias cdf='cd ~/src/ && cd "$(fzf)"'
 alias gs="git status"
-export FLYCTL_INSTALL="/home/chrisgrounds/.fly"
+alias pulldev="git checkout develop && git pull origin develop"
 
 sloc() {
   git ls-files | xargs -n100 wc -l | awk -F ' +|\\.' \
