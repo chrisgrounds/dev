@@ -51,6 +51,7 @@ return {
         "stylua",
         "shfmt",
         "haskell-language-server",
+        "typescript-language-server",
         "prettier",
       },
     },
