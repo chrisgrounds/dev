@@ -8,6 +8,11 @@ return {
     },
     opts = function()
       return {
+        setup = {
+          hls = function()
+            return true
+          end,
+        },
         tools = {
           runnables = {
             use_telescope = true,
@@ -35,6 +40,7 @@ return {
       require("mason-lspconfig").setup(opts)
     end,
   },
+  { "mrcjkb/haskell-tools.nvim" },
   {
     "folke/trouble.nvim",
     -- opts will be merged with the parent spec
@@ -53,6 +59,7 @@ return {
         "haskell-language-server",
         "typescript-language-server",
         "prettier",
+        "hlint",
       },
     },
     ---@param opts MasonSettings | {ensure_installed: string[]}
