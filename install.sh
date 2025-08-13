@@ -4,6 +4,7 @@ dependencies=(
   "ripgrep"
   "fzf"
   "bat"
+  "neovim"
 )
 
 update_apt() {
