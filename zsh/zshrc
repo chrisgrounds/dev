@@ -52,3 +52,31 @@ sloc() {
 . "$HOME/.local/bin/env"
 
 [ -f "/home/chrisgrounds/.ghcup/env" ] && . "/home/chrisgrounds/.ghcup/env" # ghcup-env
+
+_direnv_hook() {
+  trap -- '' SIGINT;
+  eval "$("/usr/bin/direnv" export zsh)";
+  trap - SIGINT;
+}
+typeset -ag precmd_functions;
+if [[ -z "${precmd_functions[(r)_direnv_hook]+1}" ]]; then
+  precmd_functions=( _direnv_hook ${precmd_functions[@]} )
+fi
+typeset -ag chpwd_functions;
+if [[ -z "${chpwd_functions[(r)_direnv_hook]+1}" ]]; then
+  chpwd_functions=( _direnv_hook ${chpwd_functions[@]} )
+fi
+
+ORIG_PROMPT=${ORIG_PROMPT:-$PROMPT}
+ORIG_RPROMPT=${ORIG_RPROMPT:-$RPROMPT}
+
+precmd() {
+  local prefix=""
+  if [[ -n "$IN_NIX_SHELL" ]]; then
+    prefix="%F{magenta}[nix]%f "
+  fi
+  PROMPT="${prefix}${ORIG_PROMPT}"
+  RPROMPT="${ORIG_RPROMPT}"
+}
+
+export DIRENV_LOG_FORMAT=""
