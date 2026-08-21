@@ -48,3 +48,8 @@ copy wezterm/wezterm.lua "$w11_wezterm_path"
 
 ### zsh ###
 copy zsh/zshrc "$linux_home/.zshrc"
+
+### herdr ###
+herdr_path="$linux_home/.config/herdr"
+remove_dir "$herdr_path"
+copy herdr "$herdr_path"

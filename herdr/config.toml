@@ -1,0 +1,10 @@
+[ui.sound]
+enabled = false
+
+[ui]
+agent_panel_sort = "spaces"
+
+[[keys.command]]
+key = "prefix+alt+r"
+type = "shell"
+command = "herdr plugin action invoke toggle --plugin persiyanov.reviewr"

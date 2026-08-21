@@ -1,20 +1,10 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
+vim.keymap.set("i", "jk", "<Esc>", { noremap = true })
 
-local map = vim.keymap.set
-local wk = require("which-key")
--- ai keys
-wk.add({
-  { "<leader>a", group = "ai" },
-})
-map("n", "<leader>ak", "<cmd>CodeCompanion<cr>", { desc = "Edit" })
-map("n", "<leader>ac", "<cmd>CodeCompanionChat<cr>", { desc = "Chat" })
-map("v", "<leader>ak", "<cmd>'<,'>CodeCompanion<cr>", { desc = "Edit" })
-map("v", "<leader>ac", "<cmd>'<,'>CodeCompanionChat<cr>", { desc = "Chat" })
+vim.keymap.set({ "n", "v" }, "<ScrollWheelDown>", "<C-e>", { noremap = true, silent = true })
+vim.keymap.set({ "n", "v" }, "<ScrollWheelUp>", "<C-y>", { noremap = true, silent = true })
+vim.keymap.set("i", "<ScrollWheelDown>", "<C-o><C-e>", { noremap = true, silent = true })
+vim.keymap.set("i", "<ScrollWheelUp>", "<C-o><C-y>", { noremap = true, silent = true })
 
-map("n", "<leader>ca", function()
-  vim.lsp.buf.code_action({ apply = true })
-end, { desc = "Code action" })
-
-map("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename" })
+vim.keymap.set("n", "<leader>gB", function()
+  require("gitsigns").blame()
+end, { desc = "Blame Buffer" })
