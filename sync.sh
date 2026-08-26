@@ -39,3 +39,9 @@ ghostty_path="$HOME/Library/Application Support/com.mitchellh.ghostty/config"
 remove_file "$ghostty_path"
 mkdir -p "$(dirname "$ghostty_path")"
 copy ghostty/config "$ghostty_path"
+
+### zed ###
+zed_path="$HOME/.config/zed/settings.json"
+remove_file "$zed_path"
+mkdir -p "$(dirname "$zed_path")"
+copy zed/settings.json "$zed_path"

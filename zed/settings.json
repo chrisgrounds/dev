@@ -1,0 +1,123 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "project_panel": {
+    "dock": "left",
+  },
+  "outline_panel": {
+    "dock": "left",
+  },
+  "collaboration_panel": {
+    "dock": "left",
+  },
+  "agent": {
+    "dock": "right",
+    "favorite_models": [],
+    "model_parameters": [],
+  },
+  "git_panel": {
+    "dock": "left",
+  },
+  "semantic_tokens": "combined",
+  "vim_mode": false,
+  "soft_wrap": "editor_width",
+  "tab_size": 2,
+  "inlay_hints": {
+    "enabled": true,
+    "show_type_hints": true,
+  },
+  "minimap": {
+    "show": "always",
+  },
+  "text_rendering_mode": "subpixel",
+  "agent_buffer_font_size": 19.0,
+  "ui_font_weight": 400.0,
+  "lsp": {
+    "rust-analyzer": {
+      "initialization_options": {
+        "rust": {
+          "analyzerTargetDir": "target/rust-analyzer",
+        },
+        "cargo": {
+          "features": "all",
+        },
+      },
+      "settings": {
+        "rust-analyzer": {
+          "rustfmt": {
+            "overrideCommand": ["leptosfmt", "--stdin", "--rustfmt"],
+          },
+        },
+      },
+    },
+    "vtsls": {
+      "settings": {
+        "typescript": {
+          "updateImportsOnFileMove": {
+            "enabled": "always",
+          },
+        },
+        "javascript": {
+          "updateImportsOnFileMove": {
+            "enabled": "always",
+          },
+        },
+      },
+      "enable_lsp_tasks": true,
+    },
+  },
+  "show_edit_predictions": false,
+  "icon_theme": {
+    "mode": "light",
+    "light": "Warm Charmed Icons",
+    "dark": "Warm Charmed Icons",
+  },
+  "ui_font_size": 20.0,
+  "buffer_font_size": 19.0,
+  "diagnostics": {
+    "inline": {
+      "enabled": true,
+      "max_severity": null,
+    },
+  },
+  "theme": {
+    "mode": "dark",
+    "light": "One Light",
+    "dark": "Rosé Pine Moon",
+  },
+  "theme_overrides": {
+    "Rosé Pine Moon": {
+      "players": [{ "cursor": "#EBCC2DFF", "selection": "#EBCC2DFF" }],
+      "syntax": {
+        "comment": {
+          "font_style": "italic",
+        },
+        "comment.doc": {
+          "font_style": "italic",
+        },
+      },
+    },
+    "Catppuccin Mocha": {
+      "border": "#1c1c28",
+      "title_bar.background": "#1c1c28",
+      "panel.background": "#1c1c28",
+      "pane.focused_border": "#1c1c28",
+      "search.match_background": "#F5052566",
+      "players": [{ "cursor": "#EBCC2DFF", "selection": "#EBCC2DFF" }],
+      "syntax": {
+        "comment": {
+          "font_style": "italic",
+        },
+        "comment.doc": {
+          "font_style": "italic",
+        },
+      },
+    },
+  },
+}
