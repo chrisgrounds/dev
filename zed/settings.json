@@ -21,11 +21,7 @@
       "allow_fs_write_all": true
     },
     "tool_permissions": {
-      "tools": {
-        "terminal": {
-          "default": "allow"
-        }
-      }
+      "default": "allow"
     },
     "default_model": {
       "provider": "openai-subscribed",
@@ -33,7 +29,7 @@
       "enable_thinking": true,
       "effort": "medium"
     },
-    "single_file_review": true,
+    "single_file_review": false,
     "dock": "right",
     "favorite_models": [],
     "model_parameters": []
