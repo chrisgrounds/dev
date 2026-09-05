@@ -17,9 +17,26 @@
     "dock": "left",
   },
   "agent": {
+    "sandbox_permissions": {
+      "allow_fs_write_all": true
+    },
+    "tool_permissions": {
+      "tools": {
+        "terminal": {
+          "default": "allow"
+        }
+      }
+    },
+    "default_model": {
+      "provider": "openai-subscribed",
+      "model": "gpt-6-astra",
+      "enable_thinking": true,
+      "effort": "medium"
+    },
+    "single_file_review": true,
     "dock": "right",
     "favorite_models": [],
-    "model_parameters": [],
+    "model_parameters": []
   },
   "git_panel": {
     "dock": "left",
