@@ -1,7 +1,7 @@
 ---
 name: spec
 description: Find every `@spec` comment the user has planted in the codebase and either list them or carry them out. A `@spec` comment is an in-place request — a spec, requirement, or change the user wants made at that exact spot (`// @spec retry with backoff here`), or a question about the code there (`// @spec? why is this clone needed`). Use when the user says "/spec", "do my specs", "pick up my @spec comments", "what specs have I left", "work through the spec tags", or similar.
-argument-hint: [list|do] [<group>] [<path>]
+argument-hint: [list|do|keep] [<group>] [<path>]
 ---
 
 # @spec — in-place requests
@@ -30,10 +30,12 @@ Any line comment or block comment, in any language:
 
 - `list` *(default)*: show the open specs and stop.
 - `do`: carry out the specs.
+- `keep`: carry out the specs like `do`, but leave every `@spec` comment in
+  place instead of removing it.
 - `<group>`: only specs tagged `@spec(<group>)`.
 - `<path>`: only search under this path.
 
-Arguments may appear in any order. If a word isn't `list`/`do` and isn't an
+Arguments may appear in any order. If a word isn't `list`/`do`/`keep` and isn't an
 existing path, treat it as a group.
 
 ## Step 1 — Find the tags
@@ -85,7 +87,8 @@ spec. In `list` mode, stop here and offer to run `do`.
 4. **Remove the tag once the spec is done.** Delete the `@spec` comment and its
    continuation lines; the code is now the record. If part of the comment is
    still worth keeping as documentation, rewrite it as a normal comment without
-   the tag.
+   the tag. In `keep` mode, skip this step: leave the `@spec` comment and its
+   continuation lines exactly as written.
 5. **Answer `ask` specs in the chat**, citing `file:line`. Leave those comments
    in place and offer to delete them. Make no code changes for them.
 6. **Verify.** Run the build, lint, and tests that cover the files you touched.
