@@ -42,12 +42,6 @@ copy ghostty/config "$ghostty_path"
 
 ### zed ###
 zed_dir="$HOME/.config/zed"
-mkdir -p "$zed_dir/bin"
+mkdir -p "$zed_dir"
 remove_file "$zed_dir/settings.json"
 copy zed/settings.json "$zed_dir/settings.json"
-remove_file "$zed_dir/keymap.json"
-copy zed/keymap.json "$zed_dir/keymap.json"
-remove_file "$zed_dir/tasks.json"
-copy zed/tasks.json "$zed_dir/tasks.json"
-remove_file "$zed_dir/bin/agent-note.sh"
-copy zed/bin/agent-note.sh "$zed_dir/bin/agent-note.sh"
