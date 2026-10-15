@@ -1,0 +1,11 @@
+[
+  {
+    "label": "note for agent",
+    "command": "$HOME/.config/zed/bin/agent-note.sh",
+    "reveal": "always",
+    "reveal_target": "center",
+    "hide": "on_success",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false
+  }
+]

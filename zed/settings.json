@@ -87,7 +87,7 @@
   },
   "show_edit_predictions": false,
   "icon_theme": {
-    "mode": "light",
+    "mode": "dark",
     "light": "Warm Charmed Icons",
     "dark": "Warm Charmed Icons",
   },
