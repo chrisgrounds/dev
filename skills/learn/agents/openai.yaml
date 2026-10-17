@@ -1,0 +1,4 @@
+interface:
+  display_name: "Learn"
+  short_description: "Short tailored courses with quizzes and feedback"
+  default_prompt: "Use $learn to teach me a short course on my chosen topic, tailored to my level and goals, with quizzes throughout and at the end."
