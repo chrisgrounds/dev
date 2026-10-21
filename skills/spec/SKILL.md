@@ -1,7 +1,6 @@
 ---
 name: spec
 description: Find every `@spec` comment the user has planted in the codebase and either list them or carry them out. A `@spec` comment is an in-place request — a spec, requirement, or change the user wants made at that exact spot (`// @spec retry with backoff here`), or a question about the code there (`// @spec? why is this clone needed`). Use when the user says "/spec", "do my specs", "pick up my @spec comments", "what specs have I left", "work through the spec tags", or similar.
-argument-hint: [list|do|keep] [<group>] [<path>]
 ---
 
 # @spec — in-place requests
