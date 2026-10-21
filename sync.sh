@@ -16,6 +16,11 @@ copy() {
   cp -r "$1" "$2"
 }
 
+link() {
+  echo "Linking $2 => $PWD/$1"
+  ln -sfn "$PWD/$1" "$2"
+}
+
 ### nvim ###
 nvim_path="$HOME/.config/nvim"
 remove_dir "$nvim_path"
@@ -38,10 +43,10 @@ copy wezterm/wezterm.lua "$wezterm_path"
 ghostty_path="$HOME/Library/Application Support/com.mitchellh.ghostty/config"
 remove_file "$ghostty_path"
 mkdir -p "$(dirname "$ghostty_path")"
-copy ghostty/config "$ghostty_path"
+link ghostty/config "$ghostty_path"
 
 ### zed ###
 zed_dir="$HOME/.config/zed"
 mkdir -p "$zed_dir"
 remove_file "$zed_dir/settings.json"
-copy zed/settings.json "$zed_dir/settings.json"
+link zed/settings.json "$zed_dir/settings.json"
