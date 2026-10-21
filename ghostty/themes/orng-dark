@@ -1,0 +1,26 @@
+# orng Dark, ported from the Zed theme by Matt Silverlock / Cloudflare
+# (https://github.com/elithrar/orng-zed)
+
+background = #161a22
+foreground = #eeeeee
+cursor-color = #ec5b2b
+cursor-text = #161a22
+selection-background = #492a24
+selection-foreground = #eeeeee
+
+palette = 0=#161a22
+palette = 1=#e06c75
+palette = 2=#7fd88f
+palette = 3=#e5c07b
+palette = 4=#56b6c2
+palette = 5=#ee7948
+palette = 6=#56b6c2
+palette = 7=#eeeeee
+palette = 8=#606060
+palette = 9=#f28b93
+palette = 10=#a3e8b0
+palette = 11=#f0d49a
+palette = 12=#7cccd5
+palette = 13=#f5a07a
+palette = 14=#7cccd5
+palette = 15=#ffffff
