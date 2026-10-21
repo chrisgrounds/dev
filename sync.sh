@@ -50,3 +50,8 @@ zed_dir="$HOME/.config/zed"
 mkdir -p "$zed_dir"
 remove_file "$zed_dir/settings.json"
 link zed/settings.json "$zed_dir/settings.json"
+
+### claude ###
+claude_themes_dir="$HOME/.claude/themes"
+mkdir -p "$claude_themes_dir"
+link claude/themes/orng-dark.json "$claude_themes_dir/orng-dark.json"
