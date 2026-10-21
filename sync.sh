@@ -30,10 +30,11 @@ esac
 
 echo "Detected OS: $OS"
 
+mkdir -p "$HOME/.config"
+
 ### nvim ###
 nvim_path="$HOME/.config/nvim"
 remove_dir "$nvim_path"
-mkdir -p "$HOME/.config"
 copy nvim "$nvim_path"
 
 ### zsh ###
@@ -42,7 +43,6 @@ copy zsh/zshrc "$HOME/.zshrc"
 ### herdr ###
 herdr_path="$HOME/.config/herdr"
 remove_dir "$herdr_path"
-mkdir -p "$HOME/.config"
 copy herdr "$herdr_path"
 
 ### wezterm ###
@@ -54,7 +54,7 @@ copy wezterm/wezterm.lua "$wezterm_path"
 if [ "$OS" = "macos" ]; then
   ghostty_path="$HOME/Library/Application Support/com.mitchellh.ghostty/config"
 else
-  ghostty_path="$HOME/.config/ghostty/config"
+  ghostty_path="$HOME/.config/ghostty/config.ghostty"
 fi
 remove_file "$ghostty_path"
 mkdir -p "$(dirname "$ghostty_path")"
@@ -74,3 +74,11 @@ link zed/settings.json "$zed_dir/settings.json"
 claude_themes_dir="$HOME/.claude/themes"
 mkdir -p "$claude_themes_dir"
 link claude/themes/orng-dark.json "$claude_themes_dir/orng-dark.json"
+
+### opencode skills ###
+opencode_skills_dir="$HOME/.config/opencode/skills"
+mkdir -p "$opencode_skills_dir"
+remove_dir "$opencode_skills_dir/learn"
+remove_dir "$opencode_skills_dir/spec"
+link skills/learn "$opencode_skills_dir/learn"
+link skills/spec "$opencode_skills_dir/spec"
