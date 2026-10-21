@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Strip "Co-Authored-By:" trailer lines (and any trailing blank lines they
+# leave) from the commit message before it is recorded.
+msg_file="$1"
+
+grep -viE '^[[:space:]]*Co-Authored-By:' "$msg_file" \
+  | awk 'NF{last=NR} {line[NR]=$0} END{for (i=1; i<=last; i++) print line[i]}' \
+  > "$msg_file.tmp"
+
+mv "$msg_file.tmp" "$msg_file"
+
