@@ -1,25 +1,19 @@
 #!/bin/bash
+set -euo pipefail
 
-### functions ###
-remove_dir() {
-  echo "Removing $1"
-  rm -rf "$1"
-}
+# ---------------------------------------------------------------------------
+# Dotfiles sync
+#
+# Every managed file/directory lives in this repo and is symlinked into
+# place. Adding a new entry is a single line in the "Entries" section below.
+#
+# Usage:
+#   ./sync.sh            # apply symlinks
+#   DRY_RUN=1 ./sync.sh  # print what would change, change nothing
+# ---------------------------------------------------------------------------
 
-remove_file() {
-  echo "Removing $1"
-  rm -f "$1"
-}
-
-copy() {
-  echo "Copying $1 => $2"
-  cp -r "$1" "$2"
-}
-
-link() {
-  echo "Linking $2 => $PWD/$1"
-  ln -sfn "$PWD/$1" "$2"
-}
+### paths ###
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 
 ### OS detection ###
 case "$(uname -s)" in
@@ -27,58 +21,53 @@ case "$(uname -s)" in
   Linux*)  OS="linux" ;;
   *) echo "Unsupported OS: $(uname -s)" >&2; exit 1 ;;
 esac
-
 echo "Detected OS: $OS"
 
-mkdir -p "$HOME/.config"
+### platform-specific directories ###
+case "$OS" in
+  macos)
+    ghostty_dir="$HOME/Library/Application Support/com.mitchellh.ghostty"
+    zed_dir="$HOME/Library/Application Support/Zed"
+    ;;
+  linux)
+    ghostty_dir="$HOME/.config/ghostty"
+    zed_dir="$HOME/.config/zed"
+    ;;
+esac
 
-### nvim ###
-nvim_path="$HOME/.config/nvim"
-remove_dir "$nvim_path"
-copy nvim "$nvim_path"
-
-### zsh ###
-copy zsh/zshrc "$HOME/.zshrc"
-
-### herdr ###
-herdr_path="$HOME/.config/herdr"
-remove_dir "$herdr_path"
-copy herdr "$herdr_path"
-
-### wezterm ###
-wezterm_path="$HOME/.wezterm.lua"
-remove_file "$wezterm_path"
-copy wezterm/wezterm.lua "$wezterm_path"
-
-### ghostty ###
-if [ "$OS" = "macos" ]; then
-  ghostty_path="$HOME/Library/Application Support/com.mitchellh.ghostty/config"
-else
-  ghostty_path="$HOME/.config/ghostty/config.ghostty"
-fi
-remove_file "$ghostty_path"
-mkdir -p "$(dirname "$ghostty_path")"
-link ghostty/config "$ghostty_path"
-
-### zed ###
-if [ "$OS" = "macos" ]; then
-  zed_dir="$HOME/Library/Application Support/Zed"
-else
-  zed_dir="$HOME/.config/zed"
-fi
-mkdir -p "$zed_dir"
-remove_file "$zed_dir/settings.json"
-link zed/settings.json "$zed_dir/settings.json"
-
-### claude ###
 claude_themes_dir="$HOME/.claude/themes"
-mkdir -p "$claude_themes_dir"
-link claude/themes/orng-dark.json "$claude_themes_dir/orng-dark.json"
-
-### opencode skills ###
 opencode_skills_dir="$HOME/.config/opencode/skills"
-mkdir -p "$opencode_skills_dir"
-remove_dir "$opencode_skills_dir/learn"
-remove_dir "$opencode_skills_dir/spec"
-link skills/learn "$opencode_skills_dir/learn"
-link skills/spec "$opencode_skills_dir/spec"
+
+### functions ###
+install_link() {
+  local src="$1" dst="$2"
+  if [ -n "${DRY_RUN:-}" ]; then
+    echo "(dry-run) would link $src => $dst"
+    return
+  fi
+  mkdir -p "$(dirname -- "$dst")"
+  rm -rf "$dst"
+  ln -sfn "$src" "$dst"
+  echo "Linked $src => $dst"
+}
+
+### entries ###
+install_link "$SCRIPT_DIR/nvim"                     "$HOME/.config/nvim"
+install_link "$SCRIPT_DIR/zsh/zshrc"                "$HOME/.zshrc"
+install_link "$SCRIPT_DIR/wezterm/wezterm.lua"      "$HOME/.wezterm.lua"
+
+# ghostty: config filename differs per platform; on Linux also drop the
+# legacy `config` file so Ghostty never sees two configs.
+install_link "$SCRIPT_DIR/ghostty/config"           "$ghostty_dir/config.ghostty"
+if [ "$OS" = "linux" ]; then
+  rm -f "$ghostty_dir/config"
+fi
+
+install_link "$SCRIPT_DIR/ghostty/themes/orng-dark" "$ghostty_dir/themes/orng-dark"
+install_link "$SCRIPT_DIR/zed/settings.json"         "$zed_dir/settings.json"
+install_link "$SCRIPT_DIR/claude/themes/orng-dark.json" "$claude_themes_dir/orng-dark.json"
+
+for skill in "$SCRIPT_DIR"/skills/*; do
+  [ -d "$skill" ] || continue
+  install_link "$skill" "$opencode_skills_dir/$(basename "$skill")"
+done
