@@ -41,6 +41,7 @@
   "vim_mode": false,
   "soft_wrap": "editor_width",
   "tab_size": 2,
+  "code_lens": "on",
   "inlay_hints": {
     "enabled": true,
     "show_type_hints": true,
@@ -52,6 +53,21 @@
   "agent_buffer_font_size": 19.0,
   "ui_font_weight": 400.0,
   "lsp": {
+    "hls": {
+      "initialization_options": {
+        "haskell": {
+          "plugin": {
+            "ghcide-type-lenses": {
+              "globalOn": true,
+              "codeLensOn": true,
+              "config": {
+                "mode": "always"
+              }
+            }
+          }
+        }
+      }
+    },
     "rust-analyzer": {
       "initialization_options": {
         "rust": {
