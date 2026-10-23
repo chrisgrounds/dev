@@ -37,6 +37,7 @@ esac
 
 claude_themes_dir="$HOME/.claude/themes"
 opencode_skills_dir="$HOME/.config/opencode/skills"
+codex_skills_dir="$HOME/.codex/skills"
 
 ### functions ###
 install_link() {
@@ -67,7 +68,10 @@ install_link "$SCRIPT_DIR/ghostty/themes/orng-dark" "$ghostty_dir/themes/orng-da
 install_link "$SCRIPT_DIR/zed/settings.json"         "$zed_dir/settings.json"
 install_link "$SCRIPT_DIR/claude/themes/orng-dark.json" "$claude_themes_dir/orng-dark.json"
 
+# Skills are symlinked into both OpenCode and Codex so edits in the dev
+# repo propagate to both tools.
 for skill in "$SCRIPT_DIR"/skills/*; do
   [ -d "$skill" ] || continue
   install_link "$skill" "$opencode_skills_dir/$(basename "$skill")"
+  install_link "$skill" "$codex_skills_dir/$(basename "$skill")"
 done
