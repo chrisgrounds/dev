@@ -1,13 +1,14 @@
 ---
 name: spec
-description: Find every `@spec` comment the user has planted in the codebase and either list them or carry them out. A `@spec` comment is an in-place request — a spec, requirement, or change the user wants made at that exact spot (`// @spec retry with backoff here`), or a question about the code there (`// @spec? why is this clone needed`). Use when the user says "/spec", "do my specs", "pick up my @spec comments", "what specs have I left", "work through the spec tags", or similar.
+description: Find every `@spec` comment the user has planted in the codebase and carry out its request by default. List only when the user explicitly asks to list. A `@spec` comment is an in-place request — a spec, requirement, or change the user wants made at that exact spot (`// @spec retry with backoff here`), or a question about the code there (`// @spec? why is this clone needed`). Use when the user says "/spec", "do my specs", "pick up my @spec comments", "what specs have I left", "work through the spec tags", or similar.
 ---
 
 # @spec — in-place requests
 
 The user leaves requests in comments where the work should happen, then invokes
-this skill to collect them. The comment's location is part of the request: "here"
-means the code around the tag.
+this skill to carry them out. The comment's location is part of the request: "here"
+means the code around the tag. Invoking the skill without a mode executes the
+requests; do not require `do` or confirmation merely because the mode was omitted.
 
 ## Tag syntax
 
@@ -27,10 +28,11 @@ Any line comment or block comment, in any language:
 
 ## Arguments
 
-- `list` *(default)*: show the open specs and stop.
-- `do`: carry out the specs.
-- `keep`: carry out the specs like `do`, but leave every `@spec` comment in
-  place instead of removing it.
+- No mode *(default)*: carry out the specs.
+- `list`: show the open specs and stop, only when explicitly requested.
+- `do`: optional alias for the default behavior; never required.
+- `keep`: carry out the specs, but leave every `@spec` comment in place
+  instead of removing it.
 - `<group>`: only specs tagged `@spec(<group>)`.
 - `<path>`: only search under this path.
 
@@ -69,7 +71,9 @@ src/services/billing/handler.rs
 ```
 
 After the list, flag any spec that is ambiguous or that conflicts with another
-spec. In `list` mode, stop here and offer to run `do`.
+spec. Stop here only when the user explicitly requested `list` mode or a list
+of open specs. Otherwise, proceed directly to Step 3 in the same turn without
+waiting for confirmation or another invocation.
 
 ## Step 3 — Do
 
