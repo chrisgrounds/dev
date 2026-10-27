@@ -35,6 +35,7 @@ esac
 claude_themes_dir="$HOME/.claude/themes"
 opencode_skills_dir="$HOME/.config/opencode/skills"
 codex_skills_dir="$HOME/.codex/skills"
+claude_skills_dir="$HOME/.claude/skills"
 
 ### functions ###
 install_link() {
@@ -69,4 +70,5 @@ for skill in "$SCRIPT_DIR"/skills/*; do
   [ -d "$skill" ] || continue
   install_link "$skill" "$opencode_skills_dir/$(basename "$skill")"
   install_link "$skill" "$codex_skills_dir/$(basename "$skill")"
+  install_link "$skill" "$claude_skills_dir/$(basename "$skill")"
 done
