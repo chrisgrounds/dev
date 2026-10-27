@@ -4,9 +4,6 @@ set -euo pipefail
 # ---------------------------------------------------------------------------
 # Dotfiles sync
 #
-# Every managed file/directory lives in this repo and is symlinked into
-# place. Adding a new entry is a single line in the "Entries" section below.
-#
 # Usage:
 #   ./sync.sh            # apply symlinks
 #   DRY_RUN=1 ./sync.sh  # print what would change, change nothing
@@ -68,8 +65,6 @@ install_link "$SCRIPT_DIR/ghostty/themes/orng-dark" "$ghostty_dir/themes/orng-da
 install_link "$SCRIPT_DIR/zed/settings.json"         "$zed_dir/settings.json"
 install_link "$SCRIPT_DIR/claude/themes/orng-dark.json" "$claude_themes_dir/orng-dark.json"
 
-# Skills are symlinked into both OpenCode and Codex so edits in the dev
-# repo propagate to both tools.
 for skill in "$SCRIPT_DIR"/skills/*; do
   [ -d "$skill" ] || continue
   install_link "$skill" "$opencode_skills_dir/$(basename "$skill")"
