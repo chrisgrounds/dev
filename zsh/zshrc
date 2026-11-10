@@ -9,7 +9,9 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR='nvim'
 export COLORTERM=truecolor
 export NVM_DIR="$HOME/.nvm"
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+for brew in /opt/homebrew/bin/brew /home/linuxbrew/.linuxbrew/bin/brew; do
+  [ -x "$brew" ] && eval "$("$brew" shellenv)" && break
+done
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
@@ -51,21 +53,14 @@ sloc() {
 
 . "$HOME/.local/bin/env"
 
-[ -f "/home/chrisgrounds/.ghcup/env" ] && . "/home/chrisgrounds/.ghcup/env" # ghcup-env
+[ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env" # ghcup-env
 
-_direnv_hook() {
-  trap -- '' SIGINT;
-  eval "$("/usr/bin/direnv" export zsh)";
-  trap - SIGINT;
-}
-typeset -ag precmd_functions;
-if [[ -z "${precmd_functions[(r)_direnv_hook]+1}" ]]; then
-  precmd_functions=( _direnv_hook ${precmd_functions[@]} )
+# Load the Nix environment for interactive shells.
+if [ -r /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]; then
+  . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 fi
-typeset -ag chpwd_functions;
-if [[ -z "${chpwd_functions[(r)_direnv_hook]+1}" ]]; then
-  chpwd_functions=( _direnv_hook ${chpwd_functions[@]} )
-fi
+
+command -v direnv >/dev/null && eval "$(direnv hook zsh)"
 
 ORIG_PROMPT=${ORIG_PROMPT:-$PROMPT}
 ORIG_RPROMPT=${ORIG_RPROMPT:-$RPROMPT}
