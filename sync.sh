@@ -66,6 +66,15 @@ install_link "$SCRIPT_DIR/ghostty/themes/orng-dark" "$ghostty_dir/themes/orng-da
 install_link "$SCRIPT_DIR/zed/settings.json"         "$zed_dir/settings.json"
 install_link "$SCRIPT_DIR/claude/themes/orng-dark.json" "$claude_themes_dir/orng-dark.json"
 
+# git: global hooks (see git-hooks/dispatch). Repos that set their own
+# core.hooksPath, e.g. via Husky, take precedence over this.
+if [ -n "${DRY_RUN:-}" ]; then
+  echo "(dry-run) would set git core.hooksPath => $SCRIPT_DIR/git-hooks"
+else
+  git config --global core.hooksPath "$SCRIPT_DIR/git-hooks"
+  echo "Set git core.hooksPath => $SCRIPT_DIR/git-hooks"
+fi
+
 for skill in "$SCRIPT_DIR"/skills/*; do
   [ -d "$skill" ] || continue
   install_link "$skill" "$opencode_skills_dir/$(basename "$skill")"

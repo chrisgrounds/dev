@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+# Strip AI "Co-Authored-By:" trailers (Claude / Anthropic) from the commit
+# message, plus any trailing blank lines they leave behind. Human co-authors
+# are kept.
+msg_file="$1"
+
+grep -viE '^[[:space:]]*Co-Authored-By:.*(claude|anthropic)' "$msg_file" \
+  | awk 'NF{last=NR} {line[NR]=$0} END{for (i=1; i<=last; i++) print line[i]}' \
+  > "$msg_file.tmp"
+
+mv "$msg_file.tmp" "$msg_file"

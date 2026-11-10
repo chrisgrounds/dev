@@ -1,0 +1,74 @@
+#!/bin/sh
+# ---------------------------------------------------------------------------
+# Global git hook dispatcher.
+#
+# `core.hooksPath` points at this directory (set by sync.sh), and each hook
+# name we care about is a symlink to this script. When git runs a hook, $0 is
+# the symlink's path, so its basename tells us which hook fired. We then:
+#
+#   1. run every executable in hooks.d/<hook-name>/ (in glob order), stopping
+#      at the first failure;
+#   2. hand off to the repo's own .git/hooks/<hook-name>, if it has one, since
+#      a global core.hooksPath otherwise stops git from looking there.
+#
+# Repos that set their own core.hooksPath (e.g. Husky) bypass this entirely.
+#
+# Only commonly used client-side hooks are linked. A repo-local hook whose
+# name is NOT linked here will not run; add a symlink to enable it:
+#
+#   ln -s dispatch <hook-name>
+#
+# Deliberately not linked:
+#   - reference-transaction, post-index-change: fire many times per command,
+#     and every invocation costs a shell + `git rev-parse`.
+#   - push-to-checkout, proc-receive, fsmonitor-watchman: a hook merely
+#     existing changes git's behaviour.
+#   - server-side (pre-receive, update, post-receive, post-update), p4-*,
+#     sendemail-validate, pre-auto-gc: not used on this machine.
+#
+# Kept fork-light on purpose: this runs several times per commit.
+# ---------------------------------------------------------------------------
+set -u
+
+name="${0##*/}"
+dir="${0%/*}"
+scripts_dir="$dir/hooks.d/$name"
+
+# No repo yet (e.g. hooks fired during `git init`) => no local hook to chain.
+common_dir="$(git rev-parse --git-common-dir 2>/dev/null)" || common_dir=""
+local_hook=""
+if [ -n "$common_dir" ] && [ -f "$common_dir/hooks/$name" ] && [ -x "$common_dir/hooks/$name" ]; then
+  local_hook="$common_dir/hooks/$name"
+fi
+
+# Fast path: nothing global to run, so just become the local hook (if any).
+if [ ! -d "$scripts_dir" ]; then
+  [ -n "$local_hook" ] && exec "$local_hook" "$@"
+  exit 0
+fi
+
+# These hooks receive data on stdin. Buffer it so every script, and the local
+# hook, sees all of it rather than the first one consuming it.
+stdin_file=""
+case "$name" in
+  pre-push|pre-receive|post-receive|post-rewrite|reference-transaction)
+    stdin_file="$(mktemp)"
+    trap 'rm -f "$stdin_file"' EXIT
+    cat > "$stdin_file"
+    ;;
+esac
+
+run() {
+  if [ -n "$stdin_file" ]; then "$@" < "$stdin_file"; else "$@"; fi
+}
+
+for h in "$scripts_dir"/*; do
+  [ -f "$h" ] && [ -x "$h" ] || continue
+  run "$h" "$@" || exit $?
+done
+
+if [ -n "$local_hook" ]; then
+  run "$local_hook" "$@"
+  exit $?
+fi
+exit 0
