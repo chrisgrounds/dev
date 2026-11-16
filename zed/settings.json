@@ -105,7 +105,7 @@
   "icon_theme": {
     "mode": "dark",
     "light": "Warm Charmed Icons",
-    "dark": "Warm Charmed Icons",
+    "dark": "Catppuccin Mocha",
   },
   "ui_font_size": 20.0,
   "buffer_font_size": 19.0,
