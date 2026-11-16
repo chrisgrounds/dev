@@ -56,3 +56,5 @@ theme = orng-dark
 # theme = Catppuccin Frappe
 
 font-size = 22
+
+window-width = 90
