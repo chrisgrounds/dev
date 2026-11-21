@@ -75,3 +75,7 @@ precmd() {
 }
 
 export DIRENV_LOG_FORMAT=""
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/chrisgrounds/.local/bin:$PATH"

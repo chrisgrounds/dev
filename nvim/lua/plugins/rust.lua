@@ -135,9 +135,9 @@ return {
               procMacro = {
                 enable = true,
               },
-              rustfmt = {
-                overrideCommand = { "leptosfmt", "--stdin", "--rustfmt" },
-              },
+              -- rustfmt = {
+              --   overrideCommand = { "leptosfmt", "--stdin", "--rustfmt" },
+              -- },
               files = {
                 exclude = {
                   ".direnv",

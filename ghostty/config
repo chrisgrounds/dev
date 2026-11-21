@@ -60,3 +60,7 @@ font-size = 12
 # Open tall windows; the height is clamped to the available screen space.
 window-width = 90
 window-height = 999
+
+# Copy selected text with Ctrl+C; otherwise pass Ctrl+C to the application.
+keybind = performable:ctrl+c=copy_to_clipboard
+keybind = ctrl+v=paste_from_clipboard
