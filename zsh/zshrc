@@ -79,3 +79,8 @@ export DIRENV_LOG_FORMAT=""
 
 # Added by Antigravity CLI installer
 export PATH="/home/chrisgrounds/.local/bin:$PATH"
+
+
+# Added by Antigravity CLI installer
+export PATH="/Users/iamchris/.local/bin:$PATH"
+export PATH="/Users/iamchris/.local/bin:$PATH"
