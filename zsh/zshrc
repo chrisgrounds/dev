@@ -22,23 +22,18 @@ export PATH="$HOME/zig-linux-x86_64-0.13.0:$PATH"
 export PATH="$HOME/.idris2/bin:$PATH"
 export PATH="$HOME/.ghcup/bin:$PATH"
 export PATH="$HOME/.cabal/bin:$PATH"
-export PATH="/home/chrisgrounds/.config:$PATH"
-export PATH="/home/chrisgrounds/.config/helix:$PATH"
+export PATH="$HOME/.config:$PATH"
 export PATH="/opt/nvim-linux-x86_64/bin:$PATH"
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
 export PATH="/snap/:$PATH"
 export PATH="~/.cabal:$PATH"
 export PATH="~/.ghcup:$PATH"
-export PATH="/home/chrisgrounds/liquid-fixpoint/dist-newstyle/build/x86_64-linux/ghc-9.10.1/liquid-fixpoint-0.9.6.3.3/x/fixpoint/build/fixpoint/fixpoint:$PATH"
 export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-
-export FLYCTL_INSTALL="/home/chrisgrounds/.fly"
 
 alias explorer="explorer.exe ."
 alias n="nvim"
 alias bat="batcat"
 alias zshconfig="nvim ~/.zshrc"
-alias switch2="/home/chrisgrounds/src/cli/target/debug/switch2"
 alias n="nvim"
 alias nf='nvim "$(fzf)"'
 alias cdf='cd ~/src/ && cd "$(fzf)"'
@@ -78,7 +73,7 @@ export DIRENV_LOG_FORMAT=""
 
 
 # Added by Antigravity CLI installer
-export PATH="/home/chrisgrounds/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 
 # Added by Antigravity CLI installer
