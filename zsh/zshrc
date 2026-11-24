@@ -39,6 +39,7 @@ alias nf='nvim "$(fzf)"'
 alias cdf='cd ~/src/ && cd "$(fzf)"'
 alias gs="git status"
 alias pulldev="git checkout develop && git pull origin develop"
+alias contributors="$HOME/.claude/skills/contributors/contributors.py"
 
 sloc() {
   git ls-files | xargs -n100 wc -l | awk -F ' +|\\.' \
